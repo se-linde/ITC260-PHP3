@@ -1,6 +1,15 @@
 <?php
+// application/views/news/index.php
+// This is the default view for my pics site. 
 
-foreach($pics as $pic){
+$this->load->view($this->config->item('theme') . 'header');
+
+
+?> 
+
+<h2><?php echo $title; ?></h2>
+
+<?php foreach($pics as $pic){
 
     $size = 'm';
     $photo_url = '
@@ -8,4 +17,10 @@ foreach($pics as $pic){
 
     echo "<img title='" . $pic->title . "' src='" . $photo_url . "' />";
  
+    endforeach; 
+    
 }
+
+$this->load->view($this->config->item('theme') . 'footer');  
+
+?> 

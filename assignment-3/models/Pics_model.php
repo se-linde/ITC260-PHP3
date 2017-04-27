@@ -2,6 +2,8 @@
 
 // This is the model, I think.  
 
+// This has to connect to the server instead of a database. 
+
 $response = json_decode(file_get_contents($url));
 $pics = $response->photos->photo;
  
