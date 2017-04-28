@@ -77,7 +77,7 @@ $route['default_controller'] = 'pages/view';
 
 
 //$route['pics/create'] = 'pics/create';
-$route['pics/(:any)'] = 'pics/view/$1';
+$route['pics/(:any)'] = 'pics/index/$1';
 $route['pics'] = 'pics';
 //$route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
@@ -87,5 +87,5 @@ $route['news/create'] = 'news/create';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 
-$route['default_controller'] = 'pages/view';
+// $route['default_controller'] = 'pages/view';
 $route['(:any)'] = 'pages/view/$1'; 
