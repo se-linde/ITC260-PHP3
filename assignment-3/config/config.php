@@ -23,7 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://lindese.com/CISP17/';
+$config['base_url'] = 'http://lindese.com/CISP17';
+
+$config['api_key'] = 'b3461ce8f1ffac4a5a01b321d6729978';
 
 /*
 |--------------------------------------------------------------------------

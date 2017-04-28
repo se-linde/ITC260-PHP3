@@ -4,50 +4,39 @@
 
 // This has to connect to the server instead of a database. 
 
-$response = json_decode(file_get_contents($url));
-$pics = $response->photos->photo;
- 
-
-
-
-<?php
 class Pics_model extends CI_Model { // extends the previous class. 
-
     
-    // This will always load the database. 
-    /* public function __construct()
+    public function get_pics($param)
     {
-            $this->load->database();
-    } */ 
-
-    
-    
-    public function get_pics($slug = FALSE)
-    {
-            if ($slug === FALSE)
-            {
-                    // $query = $this->db->get('sp17_news');
-                    // return $query->result_array();
-            }
-
-            //$query = $this->db->get_where('sp17_news', array('slug' => $slug)); 
-            // puppies, oils, bones, etc. 
-            // return $query->row_array();
         
-    } // end get_news() method
+        $api_key = 'b3461ce8f1ffac4a5a01b321d6729978';
+// $tags = 'horses';
 
-            public function set_pics()
-        {
-            $this->load->helper('url');
+        // $param = 'boneshillman'; 
+        
+        // $tags = 'boneshillman'; 
 
-            $param = url_title($this->input->post('title'), 'dash', TRUE);
+// $tag1 = 'Bones';
+// $tag2 = 'Hillman';
 
-            $data = array(
-                'title' => $this->input->post('title'),
-                'title also' => $param,
-                'text' => $this->input->post('text')
-            );
+        $perPage = 500; // default value was 50. 
+        $url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search';
+        $url.= '&api_key=' . $api_key;
+        $url.= '&tags=' . $param;
 
-            // return $this->db->insert('sp17_news', $data);
-        }
-} // end news model class. 
+// $url.= '&tags=' . $tag1 . $tag2;  // This sort of works. 
+
+        $url.= '&per_page=' . $perPage;
+        $url.= '&format=json';
+        $url.= '&nojsoncallback=1';
+ 
+// This is the model, I think.  
+        
+        $response = json_decode(file_get_contents($url));
+        $pics = $response->photos->photo;
+         
+        return $pics; 
+        
+    } // end get_pics() method
+
+} // end pics model class. 

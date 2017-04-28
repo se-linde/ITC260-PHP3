@@ -9,15 +9,17 @@ $this->load->view($this->config->item('theme') . 'header');
 
 <h2><?php echo $title; ?></h2>
 
-<?php foreach($pics as $pic){
+<?php 
+
+var $param = $pics; 
+
+foreach($pics as $pic){
 
     $size = 'm';
     $photo_url = '
     http://farm'. $pic->farm . '.staticflickr.com/' . $pic->server . '/' . $pic->id . '_' . $pic->secret . '_' . $size . '.jpg';
 
     echo "<img title='" . $pic->title . "' src='" . $photo_url . "' />";
- 
-    endforeach; 
     
 }
 

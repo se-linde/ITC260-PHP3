@@ -76,16 +76,16 @@ $route['default_controller'] = 'pages/view';
 // For Flickr API - have these lines being pics, instead of news. 
 
 
-$route['pics/create'] = 'pics/create';
+//$route['pics/create'] = 'pics/create';
 $route['pics/(:any)'] = 'pics/view/$1';
 $route['pics'] = 'pics';
-$route['(:any)'] = 'pages/view/$1';
+//$route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 
-/* 
+
 $route['news/create'] = 'news/create';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
-$route['(:any)'] = 'pages/view/$1';
+
 $route['default_controller'] = 'pages/view';
-*/ 
+$route['(:any)'] = 'pages/view/$1'; 
