@@ -1,69 +1,44 @@
 <?php
-// application/views/news/index.php
-// This is the default view for my pics site. 
-
+//application/views/pics/index.php
 $this->load->view($this->config->item('theme') . 'header');
-?> 
+?>
+<h3>Click the links below to see the coolest pics</h3>
+<a href="<?=site_url("pics/kittens")?>">Search for the coolest Kittens</a><br />
+<a href="<?=site_url("pics/bunnies")?>">Search for the coolest Bunnies</a><br />
+<a href="<?=site_url("pics/bears")?>">Search for the coolest Bears</a><br />
 
+<div class="form">
+<h2>Ok, here they are! </h2>
+<h2><?php echo $title; ?></h2>
+<h3>Enter your word to search the pics</h3>
+<form method="post">
+<input type="text" name="searchword"><br />
+<input type="submit" name="submit" value="submit"><br />
+</form>
+</div>
 
-<h2>What would you like to see pictures of?</h2>
-<a href="<?=site_url("pics/kittens")?>">OMG! Kittens!</a><br />
-<a href="<?=site_url("pics/horses")?>">Aw Cute! Horses!</a><br />
-<a href="<?=site_url("pics/puppies")?>">HECKIN' BORK! Puppies!</a>
+<!--add some style for the pics-->
+<style>
+    h4 {text-align: center; color:pink;}    
+    div.pic {text-align: center;}
+    div.form {font-size:20px; color:pink;text-align: center}
+</style>
 
-<h4>Not giving you joy?</h4><br />
-<h4>Feel free to enter in a keyword, and search for it: </h4>
+<?php foreach ($pics as $pic): ?>
+<h4><?php echo $pic->title?> </h4>
+
+<?php   
+$size = 'm';
+$photo_url = '
+http://farm'. $pic->farm . '.staticflickr.com/' . $pic->server . '/' . $pic->id . '_' . $pic->secret . '_' . $size . '.jpg';
+?>
+
+<div class="pic">
+<?php echo "<img title='" . $pic->title . "' src='" . $photo_url . "' />"; ?>
+</div>
+
+<?php endforeach; ?>
 
 <?php
-    
-// This is the extra credit search. Wrapped in a PHP tag. 
-
-    
-// Here we create a constant to identify the name of the page:  
-// define('THIS_PAGE', basename ($_SERVER ['PHP_SELF'])); 
-
-// The form handler.
-if(isset($_POST['Subject']))  
-{ // show data. 
-    
-    // Feedback.
-      
-    echo "<h4><p>Cool! Your subject is: {$_POST['Subject']}.</p> <p>Go visit the URL below:</p></h4>";  
-    
-    // Relative url. 
-    
-    $url = site_url("pics/{$_POST['Subject']}", "http" );
-    echo "<a href='" . $url . "'>$url</a>";
-    
-    
-    // echo $_POST['FirstName']; 
-} else { // show form. 
-    echo '
-    <form action = "http://www.lindese.com/CISP17/pics/index.php" method = "post">   
-    Subject: <input type = "text" name = "Subject" /><br /> 
-    <input type = "submit" /> 
-    </form> 
-    '; 
-}
-?>
-     
-            
-<h2>Here you go! Here are your pictures!</h2>
-<h2><?php echo $title; ?>!</h2>
-
-<?php 
-
-// var $param = $pics; 
-
-foreach($pics as $pic){
-
-    $size = 'm';
-    $photo_url = '
-    http://farm'. $pic->farm . '.staticflickr.com/' . $pic->server . '/' . $pic->id . '_' . $pic->secret . '_' . $size . '.jpg';
-
-    echo "<img title='" . $pic->title . "' src='" . $photo_url . "' />";
-    
-}
-
-$this->load->view($this->config->item('theme') . 'footer');  
+$this->load->view($this->config->item('theme') . 'footer');
 ?>
